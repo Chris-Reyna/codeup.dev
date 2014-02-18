@@ -74,12 +74,20 @@ var_dump($_POST);
 	    		<input type= "radio" id="qld" name="q1" value="Blue"> Blues
 	    	</label>
 		
-			<p>What brand of cars have you own?</p>
+			<p>What brand of cars have you own in the past?</p>
 		
 			<label for="car1"><input type="checkbox" id="car1" name="car[]" value="Delorean">Delorean</label>
 			<label for="car2"><input type="checkbox" id="car2" name="car[]" value="Ford">Ford</label>
 			<label for="car3"><input type="checkbox" id="car3" name="car[]" value="Chevy">Chevy</label>
 			<label for="car4"><input type="checkbox" id="car4" name="car[]" value="Toyota">Toyota</label>
+
+		<p>	<label for="cell">What cell phone carriers have you had?</label>
+			<select id="cell" name="cell[]" multiple>
+				<option value="Sprint">Sprint</option>
+				<option value="ATT">ATT</option>
+				<option value="Verizon">Verizon</option>
+				<option value="T-mobil">T-mobile</option>
+			</select></p>
 
 		<p>Click Done when completed.</p>
 
