@@ -1,5 +1,8 @@
 <?php
 
+echo "<p>GET:</p>";
+var_dump($_GET);
+
 echo "<p>POST:</p>";
 var_dump($_POST);
 
@@ -27,7 +30,7 @@ var_dump($_POST);
 	    	</p>
 		</form>
 		<h3>Compose an Email</h3>
-		<form method="POST" action="http://requestb.in/zkr002zk">
+		<form method="POST" action="">
 	    	<p>
 	        	<label for="TO">TO</label>
 	        	<input type="text" id="TO" name="TO" value="">
@@ -56,7 +59,7 @@ var_dump($_POST);
 		
 		<h3>Multiple Choice Test</h3>
 
-		<form method="POST" action="http://requestb.in/zkr002zk">
+		<form method="POST" action="">
 	    	<p>What's your favorite color?</p>
 	    	<label for="qla">
 	    		<input type= "radio" id="qla" name="q1" value="Purple"> Purple
