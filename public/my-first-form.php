@@ -87,5 +87,17 @@ var_dump($_POST);
 	        	<button type="submit">Done</button>
 	    	</p>
 		</form>
+		
+		<h3>Select Testing</h3>
+		<form method="POST" action="">
+			<label for="teeth">Did you brush your teeth?</label>
+			<select id="teeth" name="teeth">
+				<option value=0>NO</option>
+				<option value=1 selected>YES</option>
+			</select>
+			<p>
+	        	<button type="submit">Done</button>
+	    	</p>	
+		</form>
 	</body>
 </html>
