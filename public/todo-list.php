@@ -27,7 +27,9 @@ var_dump($_POST);
 	        	<label for="TASK">TASK</label>
 	        	<input type="text" id="TASK" name="TASK" value="">
 	    	</p>
-	    	
+	    	<p>
+	        	<button type="submit">ADD</button>
+	    	</p>	
 		</form>
 	</body>
 </html>
