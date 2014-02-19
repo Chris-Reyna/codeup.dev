@@ -1,0 +1,37 @@
+
+<html>
+<head>
+    <title>Switch-statement</title>
+</head>
+<body>
+    <script>
+    	var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
+		var color = colors[Math.floor(Math.random()*colors.length)];
+		var favorite = 'green';
+
+		switch (color) {
+			case 'red':
+				console.log('Red is the color of Blood');
+		 	break;
+		 	case 'yellow':
+				console.log("Yellow is a bright color");
+			break;
+			case 'orange':
+				console.log('Orange is a fruit and a color');
+			break;
+			case 'blue':
+				console.log('Blue is the color of the sea');
+			break;
+			case 'green':
+				console.log('Green is the color of money');
+			break;
+
+			default:	
+			console.log("I don't know anything about this color.");
+		}
+  
+  		var message = (color == favorite) ? 'Green is my favorite color' : 'This is not my favorite color.' ;
+  		console.log(message);
+    </script>
+</body>
+</html>
