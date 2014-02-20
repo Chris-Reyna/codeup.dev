@@ -19,7 +19,10 @@
 		console.log(names[0], names[1], names[2], names[3]);
 		for (var i = 0; i < names.length; i++) {
 			console.log(i + 'is' + names[i]);
-		}
+		} 
+		names.forEach(function(element, index, array){
+			console.log('The name at index' + index + 'is' + element);
+		});
 	</script>
 
 </body>
