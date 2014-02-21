@@ -9,11 +9,20 @@
 		function sayHello(name){
 // When called, the function should log a message that says hello from the passed in name.
 
-			console.log('Hello' + ' ' +name);
+			console.log('Hello' + ' ' + name);
 		}
 
 		sayHello(myNameIs);
 
+		var random = Math.floor((Math.random()*100)+1);
+
+		function isOdd(number){
+
+			var odd = number % 2 != 0;
+
+			 odd ? 'Number is odd' : 'Number is even';
+		}
+			console.log(isOdd(random));
 	</script>
 </body>
 </html>
