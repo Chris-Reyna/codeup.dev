@@ -15,10 +15,12 @@ var_dump($_POST);
 		<h1>TODO List</h1>
 		<h2>LIST of tasks</h2>
 			<ul>
-				<li>Take out the trash.</li>
-				<li>Wash the car.</li>
-				<li>Cut the grass.</li>
-				<li>Shoot the dog.</li>
+				<?php
+				$items = array('Take out the trash', 'Wash the car', 'Cut the grass', 'Shoot the dog'); 
+					foreach ($items as $key => $value) {
+						echo "<li>$value</li>";
+					}
+				?>
 			</ul>
 
 			<h3>Add Tasks to list</h3>
