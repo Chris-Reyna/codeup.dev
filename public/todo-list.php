@@ -16,10 +16,39 @@ var_dump($_POST);
 		<h2>LIST of tasks</h2>
 			<ul>
 				<?php
-				$items = array('Take out the trash', 'Wash the car', 'Cut the grass', 'Shoot the dog'); 
-					foreach ($items as $key => $value) {
-						echo "<li>$value</li>";
-					}
+				$filename = "to_do_list.txt";
+
+				//$items = array('Take out the trash', 'Wash the car', 'Cut the grass', 'Shoot the dog'); 
+
+    			function openFile($filename) {
+    				$handle = fopen($filename, "r");
+    				$content = fread($handle, filesize($filename));
+    				fclose($handle);
+    				return explode("\n", $content);
+    			}
+
+    			function saveFile($filename, $items) {
+    				$itemStr = implode("\n", $items);
+    				$handle = fopen($filename, "w");
+    				fwrite($handle, $itemStr);
+    				fclose($handle);
+    			}
+
+    			$items = openFile($filename);
+
+    			
+
+
+    			// file_add($_POST['TASK']);
+    			if (isset($_POST['TASK'])) {
+    				$item = $_POST['TASK'];
+    				array_push($items, $item);
+    			}
+
+				foreach ($items as $key => $item) {
+						echo "<li>$item</li>";
+				};
+				saveFile($filename, $items);
 				?>
 			</ul>
 
