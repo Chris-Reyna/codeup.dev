@@ -18,8 +18,6 @@ var_dump($_POST);
 				<?php
 				$filename = "to_do_list.txt";
 
-				//$items = array('Take out the trash', 'Wash the car', 'Cut the grass', 'Shoot the dog'); 
-
     			function openFile($filename) {
     				$handle = fopen($filename, "r");
     				$content = fread($handle, filesize($filename));
@@ -37,18 +35,23 @@ var_dump($_POST);
     			$items = openFile($filename);
 
     			
-
-
-    			// file_add($_POST['TASK']);
     			if (isset($_POST['TASK'])) {
     				$item = $_POST['TASK'];
     				array_push($items, $item);
+    				saveFile($filename, $items);
     			}
+    			if (isset($_GET['remove'])) {
+    				$item2 = $_GET['remove'];
+    				unset($items[$item2]);
+    				saveFile($filename, $items);
 
+    				header("Location: todo-list.php");
+    				exit;
+    			}
 				foreach ($items as $key => $item) {
-						echo "<li>$item</li>";
+						echo "<li>$item | <a href=\"?remove=$key\">Mark as complete</a> </li>";
 				};
-				saveFile($filename, $items);
+				
 				?>
 			</ul>
 
