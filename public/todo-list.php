@@ -56,7 +56,7 @@ var_dump($_POST);
 			</ul>
 
 			<h3>Add Tasks to list</h3>
-		<form method="POST" action="">
+		<form method="POST" action="todo-list.php">
 	    	<p>
 	        	<label for="TASK">TASK</label>
 	        	<input type="text" id="TASK" name="TASK" value="">
