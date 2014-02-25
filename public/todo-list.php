@@ -1,13 +1,4 @@
 <?php
-// echo "<p>GET:</p>";
-// var_dump($_GET);
-
-// echo "<p>POST:</p>";
-// var_dump($_POST);
-
-// echo "<p>FILE</p>";
-// var_dump($_FILES);
-
 
 $filename = "to_do_list.txt";
 //load file return an array
@@ -57,9 +48,6 @@ if (count($_FILES) > 0 && $_FILES['upload_file']['error'] == 0) {
     $items = array_merge($items, $newitems);
     //var_dump($newitems);
     saveFile($filename, $items);
-
-    //header("Location: todo-list.php");
-    //exit;
 }
 ?>
 <!DOCTYPE>
