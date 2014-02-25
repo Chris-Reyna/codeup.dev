@@ -52,10 +52,15 @@ if (count($_FILES) > 0 && $_FILES['upload_file']['error'] == 0) {
     $saved_filename = $upload_dir . $pathname;
     // Move the file from the temp location to our uploads directory
     move_uploaded_file($_FILES['upload_file']['tmp_name'], $saved_filename);
+
+    $newitems = openFile($saved_filename);
+    $items = array_merge($items, $newitems);
+    //var_dump($newitems);
+    saveFile($filename, $items);
+
+    //header("Location: todo-list.php");
+    //exit;
 }
-
-//Check if we saved a file
-
 ?>
 <!DOCTYPE>
 <html>
@@ -68,7 +73,7 @@ if (count($_FILES) > 0 && $_FILES['upload_file']['error'] == 0) {
 			<ul>
 				
 			 <?foreach ($items as $key => $item) : ?>
-				<li><?= $item?> | <a href= "?remove=<?= $key?>">Mark as complete</a> </li>
+				<li><?= htmlspecialchars(strip_tags($item))?> | <a href= "?remove=<?= $key?>">Mark as complete</a> </li>
 			 <? endforeach ?>
              <?if (isset($saved_filename)) : ?>
                 <?= "<p>You can download your file <a href='/uploads/{$filename}'>here</a>.</p>"?>
