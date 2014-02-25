@@ -35,7 +35,7 @@ var_dump($_POST);
     			$items = openFile($filename);
 
     			
-    			if (isset($_POST['TASK'])) {
+    			if (isset($_POST['TASK']) && !empty($_GET['TASK'])) {
     				$item = $_POST['TASK'];
     				array_push($items, $item);
     				saveFile($filename, $items);
