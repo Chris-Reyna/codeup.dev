@@ -17,14 +17,14 @@ var_dump($_POST);
 			<ul>
 				<?php
 				$filename = "to_do_list.txt";
-
+				//load file return an array
     			function openFile($filename) {
     				$handle = fopen($filename, "r");
     				$content = fread($handle, filesize($filename));
     				fclose($handle);
     				return explode("\n", $content);
     			}
-
+    			//save an array to a flat file
     			function saveFile($filename, $items) {
     				$itemStr = implode("\n", $items);
     				$handle = fopen($filename, "w");
@@ -34,12 +34,13 @@ var_dump($_POST);
 
     			$items = openFile($filename);
 
-    			
-    			if (isset($_POST['TASK']) && !empty($_GET['TASK'])) {
+    			//Load file
+    			if (isset($_POST['TASK']) && !empty($_POST['TASK'])) {
     				$item = $_POST['TASK'];
     				array_push($items, $item);
     				saveFile($filename, $items);
     			}
+    			//remove
     			if (isset($_GET['remove'])) {
     				$item2 = $_GET['remove'];
     				unset($items[$item2]);
@@ -59,7 +60,7 @@ var_dump($_POST);
 		<form method="POST" action="todo-list.php">
 	    	<p>
 	        	<label for="TASK">TASK</label>
-	        	<input type="text" id="TASK" name="TASK" value="">
+	        	<input type="text" id="TASK" name="TASK" autofocus= "autofocus"	value="">
 	    	</p>
 	    	<p>
 	        	<button type="submit">ADD</button>
