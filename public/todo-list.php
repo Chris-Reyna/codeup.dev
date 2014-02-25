@@ -1,12 +1,12 @@
 <?php
-echo "<p>GET:</p>";
-var_dump($_GET);
+// echo "<p>GET:</p>";
+// var_dump($_GET);
 
-echo "<p>POST:</p>";
-var_dump($_POST);
+// echo "<p>POST:</p>";
+// var_dump($_POST);
 
-echo "<p>FILE</p>";
-var_dump($_FILES);
+// echo "<p>FILE</p>";
+// var_dump($_FILES);
 
 
 $filename = "to_do_list.txt";
