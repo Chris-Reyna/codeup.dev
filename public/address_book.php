@@ -30,13 +30,13 @@ if (!empty($_POST)) {
 	$entry = [$contactname, $address, $city, $state, $zip, $phone];
 
 	// chk empty
-	$check = [$contactname, $address, $city, $state, $zip];
-	foreach ($check as $value){
-		if (empty($value)){
-			echo $error;
-			return false;
-		}
-	}
+	// $check = [$contactname, $address, $city, $state, $zip];
+	// foreach ($check as $value){
+	// 	if (empty($value)){
+	// 		echo $error;
+	// 		return false;
+	// 	}
+	// }
 	array_push($address_book, $entry);
 }
 writeCSV($filename,$address_book);
