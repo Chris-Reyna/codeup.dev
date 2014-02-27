@@ -1,14 +1,19 @@
 <?php 
 //var_dump($_POST);
 
-$address_book = [
-    ['The White House', '1600 Pennsylvania Avenue NW', 'Washington', 'DC', '20500'],
-    ['Marvel Comics', 'P.O. Box 1527', 'Long Island City', 'NY', '11101'],
-    ['LucasArts', 'P.O. Box 29901', 'San Francisco', 'CA', '94129-0901']
-];
-//
+$address_book = [];
+
 $filename = "addressbook.csv";
 
+function openFile($filename) {
+    $content=[];
+    $handle = fopen($filename, "r");
+    while(($data = fgetcsv($handle)) !== FALSE){
+    	$content[] = $data;
+    }
+    fclose($handle);
+    return $content;
+}
 
 function writeCSV($filename, $arrays){
 $handle = fopen($filename, 'w');
@@ -16,6 +21,12 @@ foreach ($arrays as $array) {
 	fputcsv($handle, $array);
 }
 	fclose($handle);
+}
+
+if (file_exists($filename)){
+$address_book = openFile($filename);
+}else{
+	$address_book = [];
 }
 
 $error = 'Please fill out required fields';
@@ -38,6 +49,14 @@ if (!empty($_POST)) {
 	}
 
 }
+
+if (isset($_GET['remove'])) {
+    $info = $_GET['remove'];
+    unset($address_book[$info]);
+    writeCSV($filename, $address_book);
+
+    header("Location: address_book.php");
+    exit;
 
 
 ?>
