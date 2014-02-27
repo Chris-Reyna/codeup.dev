@@ -8,6 +8,11 @@ class AddressDataStore {
 
     public $filename = '';
 
+    function __construct($file = 'addressbook.csv'){
+    	$this->filename = $file;
+
+    }
+
     function read_address_book(){
     $content=[];
     $handle = fopen($this->filename, "r");
@@ -30,7 +35,6 @@ class AddressDataStore {
 //create instance of object
 $book = new AddressDataStore();
 //instance accessing property and assigning it file
-$book->filename = $filename;
 //assigning a variable to instance that is accessing the return from the method
 $blackbook = $book->read_address_book();
 //instance accessing method 2 passing variable assigned to return of method 1
@@ -96,7 +100,7 @@ if (!empty($_POST)) {
 				    			<td>
 				    				<?= $item; ?>
 				    			</td>		
-				    		<? } ?>
+				    		<? } ?> 
 				    	</tr>
 				   <? } ?>				 
 			</table>
