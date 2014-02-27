@@ -1,32 +1,45 @@
-<?php 
-//var_dump($_POST);
+<?php
 
-$address_book = [];
+$blackbook = [];
 
 $filename = "addressbook.csv";
 
-function openFile($filename) {
+class AddressDataStore {
+
+    public $filename = '';
+
+    function read_address_book(){
     $content=[];
-    $handle = fopen($filename, "r");
+    $handle = fopen($this->filename, "r");
     while(($data = fgetcsv($handle)) !== FALSE){
     	$content[] = $data;
     }
     fclose($handle);
     return $content;
-}
+    }
 
-function writeCSV($filename, $arrays){
-$handle = fopen($filename, 'w');
-foreach ($arrays as $array) {
-	fputcsv($handle, $array);
+    function write_address_book($addresses_array) {
+      $handle = fopen($this->filename, 'w');
+		foreach ($addresses_array as $array) {
+			fputcsv($handle, $array);
+		}
+		fclose($handle);
+    }
+
 }
-	fclose($handle);
-}
+//create instance of object
+$book = new AddressDataStore();
+//instance accessing property and assigning it file
+$book->filename = $filename;
+//assigning a variable to instance that is accessing the return from the method
+$blackbook = $book->read_address_book();
+//instance accessing method 2 passing variable assigned to return of method 1
+$book->write_address_book($blackbook);
 
 if (file_exists($filename)){
-$address_book = openFile($filename);
+$book -> read_address_book($filename);
 }else{
-	$address_book = [];
+	$blackbook = [];
 }
 
 $error = 'Please fill out required fields';
@@ -44,20 +57,20 @@ if (!empty($_POST)) {
 	if (empty($contactname) || empty($address) || empty($city) || empty($state) || empty($zip)){
 		echo $error;
 	}else {
-		array_push($address_book, $entry);
-		writeCSV($filename,$address_book);
+		array_push($blackbook, $entry);
+		$book-> write_address_book($blackbook);
 	}
 
 }
 
-if (isset($_GET['remove'])) {
-    $info = $_GET['remove'];
-    unset($address_book[$info]);
-    writeCSV($filename, $address_book);
+// if (isset($_GET['remove'])) {
+//     $info = $_GET['remove'];
+//     unset($blackbook[$info]);
+//     $book->write_address_book($filename, $blackbook);
 
-    header("Location: address_book.php");
-    exit;
-
+//     header("Location: address_book.php");
+//     exit;
+// }
 
 ?>
 
@@ -77,7 +90,7 @@ if (isset($_GET['remove'])) {
 					<th>ZIPCODE</th>
 					<th>PHONE#</th>
 				</tr>
-				    <? foreach ($address_book as $entry) { ?>
+				    <? foreach ($blackbook as $entry) { ?>
 				    	<tr>
 				    		<? foreach ($entry as $item) { ?>
 				    			<td>
