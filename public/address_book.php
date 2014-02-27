@@ -34,7 +34,6 @@ class AddressDataStore {
 }
 //create instance of object
 $book = new AddressDataStore();
-//instance accessing property and assigning it file
 //assigning a variable to instance that is accessing the return from the method
 $blackbook = $book->read_address_book();
 //instance accessing method 2 passing variable assigned to return of method 1
@@ -75,6 +74,23 @@ if (!empty($_POST)) {
 //     header("Location: address_book.php");
 //     exit;
 // }
+// if (count($_FILES) > 0 && $_FILES['upload_file']['error'] == 0) {
+//     // Set the destination directory for uploads
+//     $upload_dir = '/vagrant/sites/codeup.dev/public/uploads/';
+//     // Grab the filename from the uploaded file by using basename
+//     $pathname = basename($_FILES['upload_file']['name']);
+//     // Create the saved filename using the file's original name and our upload directory
+//     $saved_filename = $upload_dir . $pathname;
+//     // Move the file from the temp location to our uploads directory
+//     move_uploaded_file($_FILES['upload_file']['tmp_name'], $saved_filename);
+
+//     $book->read_address_book($saved_filename);
+//     $blackbook = array_merge($blackbook, $saved_filename);
+//     //var_dump($newitems);
+//     $book->write_address_book($blackbook);
+// }
+
+
 
 ?>
 
@@ -98,13 +114,22 @@ if (!empty($_POST)) {
 				    	<tr>
 				    		<? foreach ($entry as $item) { ?>
 				    			<td>
-				    				<?= $item; ?>
+				    				<?= htmlspecialchars(strip_tags($item)); ?>
 				    			</td>		
 				    		<? } ?> 
 				    	</tr>
 				   <? } ?>				 
 			</table>
-
+		<h3>Upload File</h3>
+        <form method="POST" enctype="multipart/form-data" action="address_book.php">
+            <p>
+              <label for="upload_file">File to upload</label>
+            <input type="file" id="upload_file" name="upload_file">
+            </p>
+            <p>
+                <input type="submit" value="Upload">
+            </p>
+        </form>
 		<h3>Contact Information</h3>
 		<form method="POST" action="">
 	    	<p>
