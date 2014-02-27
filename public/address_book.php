@@ -1,5 +1,5 @@
 <?php 
-var_dump($_POST);
+//var_dump($_POST);
 
 $address_book = [
     ['The White House', '1600 Pennsylvania Avenue NW', 'Washington', 'DC', '20500'],
@@ -29,17 +29,16 @@ if (!empty($_POST)) {
 	$phone = $_POST['phone'];
 	$entry = [$contactname, $address, $city, $state, $zip, $phone];
 
-	// chk empty
-	// $check = [$contactname, $address, $city, $state, $zip];
-	// foreach ($check as $value){
-	// 	if (empty($value)){
-	// 		echo $error;
-	// 		return false;
-	// 	}
-	// }
-	array_push($address_book, $entry);
+	
+	if (empty($contactname) || empty($address) || empty($city) || empty($state) || empty($zip)){
+		echo $error;
+	}else {
+		array_push($address_book, $entry);
+		writeCSV($filename,$address_book);
+	}
+
 }
-writeCSV($filename,$address_book);
+
 
 ?>
 
@@ -74,23 +73,23 @@ writeCSV($filename,$address_book);
 		<form method="POST" action="">
 	    	<p>
 	        	<label for="contactname">Contact name</label>
-	        	<input id="contactname" name="contactname" placeholder="Enter Name" autofocus= "autofocus" type="text" >
+	        	<input id="contactname" name="contactname" placeholder="Enter Name" autofocus= "autofocus" type="text" required>
 	    	</p>
 	    	<p>
 	        	<label for="address">Home Address</label>
-	        	<input id="address" name="address" placeholder="Enter Address" type="text" > 
+	        	<input id="address" name="address" placeholder="Enter Address" type="text" required> 
 	    	</p>
 	    	<p>
 	    		<label for="city">City</label>
-	    		<input id="city" name="city" placeholder="Enter City" type="text" >
+	    		<input id="city" name="city" placeholder="Enter City" type="text" required>
 	    	</p>
 	    	<p>
 	    		<label for="state">State</label>
-	    		<input id="state" name="state" placeholder="Enter State" type="text" >
+	    		<input id="state" name="state" placeholder="Enter State" type="text" required>
 	    	</p>
 	    	<p>
 	    		<label for="zip">Zipcode</label>
-	    		<input id="zip" name="zip" placeholder="Enter Zipcode" type="text" >
+	    		<input id="zip" name="zip" placeholder="Enter Zipcode" type="text" required>
 	    	</p>
 	    	<p>
 	    		<label for="phone">Phone Number</label>
