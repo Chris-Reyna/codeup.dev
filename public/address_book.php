@@ -42,14 +42,14 @@ if (!empty($_POST)) {
 
 }
 
-// if (isset($_GET['remove'])) {
-//     $info = $_GET['remove'];
-//     unset($blackbook[$info]);
-//     $book->write_address_book($filename, $blackbook);
+if (isset($_GET['remove'])) {
+    $info = $_GET['remove'];
+    unset($blackbook[$info]);
+    $book->write_address_book($filename, $blackbook);
 
-//     header("Location: address_book.php");
-//     exit;
-// }
+    header("Location: address_book.php");
+    exit;
+}
 // if (count($_FILES) > 0 && $_FILES['upload_file']['error'] == 0) {
 //     // Set the destination directory for uploads
 //     $upload_dir = '/vagrant/sites/codeup.dev/public/uploads/';
@@ -86,15 +86,15 @@ if (!empty($_POST)) {
 					<th>ZIPCODE</th>
 					<th>PHONE#</th>
 				</tr>
-				    <? foreach ($blackbook as $entry) { ?>
+				    <? foreach ($blackbook as $key => $entry) { ?> 
 				    	<tr>
 				    		<? foreach ($entry as $item) { ?>
 				    			<td>
-				    				<?= htmlspecialchars(strip_tags($item)); ?>
+				    				<?= htmlspecialchars(strip_tags($item)); ?> 
 				    			</td>		
-				    		<? } ?> 
-				    	</tr>
-				   <? } ?>				 
+				    		<? } ?> <td><a href= "?remove=<?= $key?>">Delete Contact</a></td>
+				    	</tr> 
+				   <? } ?> 			 
 			</table>
 		<h3>Upload File</h3>
         <form method="POST" enctype="multipart/form-data" action="address_book.php">
