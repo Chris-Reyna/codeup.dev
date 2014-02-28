@@ -80,7 +80,7 @@ if (count($_FILES) > 0 && $_FILES['upload_file']['error'] == 0) {
 	</head>
 	<body>
 		<h1>CONTACTS</h1>
-			<table>
+			<table border="2" style="width:500px">
 				<tr>
 					<th>NAME</th>
 					<th>ADDRESS</th>
