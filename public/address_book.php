@@ -17,12 +17,6 @@ $blackbook = $book->read_address_book();
 //instance accessing method 2 passing variable assigned to return of method 1
 $book->write_address_book($blackbook);
 
-if (file_exists($filename)){
-$book -> read_address_book($filename);
-}else{
-	$blackbook = [];
-}
-
 $error = 'Please fill out required fields';
 
 if (!empty($_POST)) {
