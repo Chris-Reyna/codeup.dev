@@ -1,6 +1,11 @@
 <?php
+require_once('filestore.php');
 
 $filename = "to_do_list.txt";
+
+$list = new filestore('to_do_list.txt');
+
+
 //load file return an array
 function openFile($filename) {
     $handle = fopen($filename, "r");
