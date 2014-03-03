@@ -9,11 +9,11 @@ class AddressDataStore extends Filestore {
         parent::__construct($filename);
     }
     public function read_address_book(){
-        return $this-> read_csv();
+        return $this->read();
     }
 
     public function write_address_book($array) {
-        return $this-> write_csv($array);
+        return $this->write($array);
     }
 
 } 
