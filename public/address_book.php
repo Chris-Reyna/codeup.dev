@@ -28,13 +28,22 @@ if (!empty($_POST)) {
 	$phone = $_POST['phone'];
 	$entry = [$contactname, $address, $city, $state, $zip, $phone];
 
-	
+	$book->char_limit($_POST);
+
 	if (empty($contactname) || empty($address) || empty($city) || empty($state) || empty($zip)){
 		echo $error;
+		throw new Exception("One or more required field is empty");
+		
 	}else {
 		array_push($blackbook, $entry);
-		$book-> write_address_book($blackbook);
+		$book->write_address_book($blackbook);
 	}
+	// if (empty($address)){
+	// 	echo $error;
+	// }else {
+	// 	array_push($blackbook, $entry);
+	// 	$book->write_address_book($blackbook);	
+	// }
 
 }
 
@@ -107,7 +116,7 @@ if (count($_FILES) > 0 && $_FILES['upload_file']['error'] == 0) {
 		<form method="POST" action="">
 	    	<p>
 	        	<label for="contactname">Contact name</label>
-	        	<input id="contactname" name="contactname" placeholder="Enter Name" autofocus= "autofocus" type="text" required>
+	        	<input id="contactname" name="contactname" placeholder="Enter Name" autofocus= "autofocus" type="text" >
 	    	</p>
 	    	<p>
 	        	<label for="address">Home Address</label>
