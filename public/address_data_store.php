@@ -16,11 +16,13 @@ class AddressDataStore extends Filestore {
         return $this->write($array);
     }
     //set character limit to 125 for input
-    public function char_limit($array) {
+    public function validation($array) {
         foreach($array as $key=>$value){
-            if(strlen($value) > 125){
-                throw new Exception("Content exceeds 125 characters");
-            }
+                if (empty($value)){
+                    throw new Exception("$key required field is empty");
+                }elseif(strlen($value) > 125){
+                    throw new Exception("$key exceeds 125 characters");
+                }
         }
     }
 } 
