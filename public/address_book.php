@@ -20,31 +20,22 @@ $book->write_address_book($blackbook);
 $error = 'Please fill out required fields';
 
 if (!empty($_POST)) {
-	$contactname = $_POST['contactname'];
-	$address = $_POST['address'];
-	$city = $_POST['city'];
-	$state = $_POST['state'];
-	$zip = $_POST['zip'];
-	$phone = $_POST['phone'];
-	$entry = [$contactname, $address, $city, $state, $zip, $phone];
-
-	$book->char_limit($_POST);
-
-	if (empty($contactname) || empty($address) || empty($city) || empty($state) || empty($zip)){
-		echo $error;
-		throw new Exception("One or more required field is empty");
+	try{
+		$entry['contactname'] = $_POST['contactname'];
+		$entry['address'] = $_POST['address'];
+		$entry['city'] = $_POST['city'];
+		$entry['state'] = $_POST['state'];
+		$entry['zip'] = $_POST['zip'];
+		$entry['phone'] = $_POST['phone'];
 		
-	}else {
+
+		$book->validation($entry);
+		
 		array_push($blackbook, $entry);
 		$book->write_address_book($blackbook);
-	}
-	// if (empty($address)){
-	// 	echo $error;
-	// }else {
-	// 	array_push($blackbook, $entry);
-	// 	$book->write_address_book($blackbook);	
-	// }
-
+	}catch(Exception $e){
+		echo $e->getMessage();
+	}	
 }
 
 if (isset($_GET['remove'])) {
