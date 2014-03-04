@@ -1,7 +1,5 @@
 <?php
 
-
-
 require_once('address_data_store.php');
 
 $blackbook = [];
