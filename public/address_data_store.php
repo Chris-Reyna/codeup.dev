@@ -1,5 +1,5 @@
 <?php
-
+require('customexception.php');
 require_once('filestore.php');
 
 class AddressDataStore extends Filestore {
@@ -19,9 +19,9 @@ class AddressDataStore extends Filestore {
     public function validation($array) {
         foreach($array as $key=>$value){
                 if (empty($value)){
-                    throw new Exception("$key required field is empty");
+                    throw new InvalidInputException("$key required field is empty");
                 }elseif(strlen($value) > 125){
-                    throw new Exception("$key exceeds 125 characters");
+                    throw new InvalidInputException("$key exceeds 125 characters");
                 }
         }
     }
