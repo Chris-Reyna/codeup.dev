@@ -1,6 +1,7 @@
 <?php
 
 
+
 require_once('address_data_store.php');
 
 $blackbook = [];
@@ -33,7 +34,7 @@ if (!empty($_POST)) {
 		
 		array_push($blackbook, $entry);
 		$book->write_address_book($blackbook);
-	}catch(Exception $e){
+	}catch(InvalidInputException $e){
 		echo $e->getMessage();
 	}	
 }
