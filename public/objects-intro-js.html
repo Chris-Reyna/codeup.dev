@@ -1,0 +1,20 @@
+<html>
+<head>
+	<title>objects-intro-js.html</title>
+</head>
+<body>
+	<script>
+
+		var person = {};
+		person.firstName = "Malorie";
+		person.lastName = "Morales";
+
+		person.sayHello = function() {
+			console.log('Hello ' + this.firstName +' '+ this.lastName);
+		};
+
+		person.sayHello();
+
+	</script>
+</body>
+</html>
