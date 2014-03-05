@@ -1,39 +1,37 @@
 <?php
 require_once('filestore.php');
 
-$filename = "to_do_list.txt";
-
-$list = new filestore('to_do_list.txt');
+$list = new Filestore('to_do_list.txt');
 
 
 //load file return an array
-function openFile($filename) {
-    $handle = fopen($filename, "r");
-    $content = fread($handle, filesize($filename));
-    fclose($handle);
-    return explode("\n", $content);
-}
-//save an array to a flat file
-function saveFile($filename, $items) {
-    $itemStr = implode("\n", $items);
-    $handle = fopen($filename, "w");
-    fwrite($handle, $itemStr);
-    fclose($handle);
-}
+// function openFile($filename) {
+//     $handle = fopen($filename, "r");
+//     $content = fread($handle, filesize($filename));
+//     fclose($handle);
+//     return explode("\n", $content);
+// }
+// //save an array to a flat file
+// function saveFile($filename, $items) {
+//     $itemStr = implode("\n", $items);
+//     $handle = fopen($filename, "w");
+//     fwrite($handle, $itemStr);
+//     fclose($handle);
+// }
 
-$items = openFile($filename);
+$items = $list->read();
 
 //Load file
 if (isset($_POST['TASK']) && !empty($_POST['TASK'])) {
     $item = $_POST['TASK'];
     array_push($items, $item);
-    saveFile($filename, $items);
+    $list->write($items);
 }
 //remove
 if (isset($_GET['remove'])) {
     $item2 = $_GET['remove'];
     unset($items[$item2]);
-    saveFile($filename, $items);
+    $list->write($items);
 
     header("Location: todo-list.php");
     exit;
@@ -48,32 +46,34 @@ if (count($_FILES) > 0 && $_FILES['upload_file']['error'] == 0) {
     $saved_filename = $upload_dir . $pathname;
     // Move the file from the temp location to our uploads directory
     move_uploaded_file($_FILES['upload_file']['tmp_name'], $saved_filename);
-
-    $newitems = openFile($saved_filename);
+   
+    $newlist= new Filestore($saved_filename);
+    $newitems = $newlist->read($newlist);
     $items = array_merge($items, $newitems);
     //var_dump($newitems);
-    saveFile($filename, $items);
+    $list->write($items);
 }
 ?>
 <!DOCTYPE>
 <html>
 	<head>
 		<title>TODO List</title>
+        <link rel="stylesheet" href="/css/todo_css_ext.css">
 	</head>
 	<body>
-		<h1>TODO List</h1>
-		<h2>LIST of tasks</h2>
+		<h1 class="header">TODO List</h1>
+		<h2 class="header">LIST of tasks</h2>
 			<ul>
 				
 			 <?foreach ($items as $key => $item) : ?>
 				<li><?= htmlspecialchars(strip_tags($item))?> | <a href= "?remove=<?= $key?>">Mark as complete</a> </li>
 			 <? endforeach ?>
              <?if (isset($saved_filename)) : ?>
-                <?= "<p>You can download your file <a href='/uploads/{$filename}'>here</a>.</p>"?>
+                <?= "<p>You can download your file <a href='/uploads/{$saved_filename}'>here</a>.</p>"?>
              <?endif?> 
 			</ul>
 
-		<h3>Add Tasks to list</h3>
+		<h3 class="header">Add Tasks to list</h3>
 		<form method="POST" enctype="multipart/form-data" action="todo-list.php">
 	    	<p>
 	        	<label for="TASK">TASK</label>
@@ -84,7 +84,7 @@ if (count($_FILES) > 0 && $_FILES['upload_file']['error'] == 0) {
 	    	</p>	
 		</form>
 
-        <h3>Upload File</h3>
+        <h3 id="three" class="header">Upload File</h3>
         <form method="POST" enctype="multipart/form-data" action="todo-list.php">
             <p>
               <label for="upload_file">File to add to list</label>
