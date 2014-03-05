@@ -1,0 +1,21 @@
+form { border: 5px white;
+   border-style: dotted double;
+   background: #0F0;
+   background-clip: content-box; }
+
+body { background-color: #000;
+	   font-family: fantasy; ;
+ }
+
+.header{ text-decoration: underline; color: white;}
+
+li {
+	color: #FFD801;
+	text-decoration: underline;
+	list-style: upper-alpha;
+	list-style: square;
+
+}
+a {
+ color:green;
+}
