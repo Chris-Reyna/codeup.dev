@@ -1,7 +1,9 @@
 form { border: 5px white;
    border-style: dotted double;
    background: #0F0;
-   background-clip: content-box; }
+   background-clip: content-box; 
+   width: 300px;
+}
 
 body { background-color: #000;
 	   font-family: fantasy; ;
@@ -17,3 +19,5 @@ li {
 
 }
 a {color:green;}
+
+#main{ text-align: center; }
