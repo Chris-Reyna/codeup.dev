@@ -45,7 +45,7 @@ if (count($_FILES) > 0 && $_FILES['upload_file']['error'] == 0) {
         <link rel="stylesheet" href="/css/todo_css_ext.css">
 	</head>
 	<body>
-		<h1 class="header">TODO List</h1>
+		<h1 id="main" class="header">TODO List</h1>
 		<h2 class="header">LIST of tasks</h2>
 			<ul>
 				
