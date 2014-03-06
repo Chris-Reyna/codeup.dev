@@ -3,22 +3,6 @@ require_once('filestore.php');
 
 $list = new Filestore('to_do_list.txt');
 
-
-//load file return an array
-// function openFile($filename) {
-//     $handle = fopen($filename, "r");
-//     $content = fread($handle, filesize($filename));
-//     fclose($handle);
-//     return explode("\n", $content);
-// }
-// //save an array to a flat file
-// function saveFile($filename, $items) {
-//     $itemStr = implode("\n", $items);
-//     $handle = fopen($filename, "w");
-//     fwrite($handle, $itemStr);
-//     fclose($handle);
-// }
-
 $items = $list->read();
 
 //Load file
