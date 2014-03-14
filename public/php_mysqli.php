@@ -1,12 +1,6 @@
 <?php
 
-// Get new instance of MySQLi object
-$mysqli = new mysqli('127.0.0.1', 'creyna', 'chris', 'codeup_mysqli_test_db');
-
-// Check for errors
-if ($mysqli->connect_errno) {
-    echo 'Failed to connect to MySQL: (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error;
-}
+require_once('national_park_store.php');
 
 $parks = [
 	['name'=>'Acadia', 'location'=>'Maine', 'description'=>'Covering most of Mount Desert Island and other coastal islands, Acadia features the tallest mountain on the Atlantic coast of the United States, granite peaks, ocean shoreline, woodlands, and lakes. There are freshwater, estuary, forest, and intertidal habitats.', 'date_established'=> '1919-02-26', 'area_in_acres'=> 47389.67], 
