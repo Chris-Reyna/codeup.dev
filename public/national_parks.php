@@ -10,6 +10,40 @@ $sortOrder = $_GET['sort_order'];
 $result = $mysqli->query("SELECT * FROM national_parks ORDER BY $sortCol $sortOrder");
 
 //if (!empty($_POST))
+if(!empty($_POST)) {
+	try {
+		// // Set variables
+		$entry['name'] = $_POST['pname'];
+		$entry['location'] = $_POST['plocation'];
+		$entry['date'] = $_POST['date'];
+		$entry['acres'] = $_POST['acre'];
+		$entry['description'] = $_POST['descript'];
+
+		foreach ($entry as $key => $value) {
+			if (empty($value)) {
+				$error[] = "$key required field is empty";			
+			}
+		}
+		if (!empty($error)) {
+			throw new Exception("Missing Fields", 1);
+		} else {
+			// // Create the prepared statement
+			$stmt = $mysqli->prepare("INSERT INTO national_parks (name, location, date_established, area_in_acres, description) VALUES (?,?,?,?,?)");
+
+			// bind parameters
+			$stmt->bind_param("sssss", $entry['name'], $entry['location'], $entry['date'], $entry['acres'], $entry['description']);
+
+			// execute query, return result
+			$stmt->execute();
+		}
+
+	} catch (Exception $e) {
+		$e->getMessage();
+	}
+
+
+
+}
 	
 ?>
 
@@ -57,22 +91,34 @@ $result = $mysqli->query("SELECT * FROM national_parks ORDER BY $sortCol $sortOr
 	}
 	?>
 	</table>
+	<?php if(!empty($error)):?>
+				<div class="alert alert-warning">
+					<?php
+						if (!empty($error))
+							foreach ($error as $key => $value): 
+								echo "<p>$value</p>";
+							endforeach; 
+					?>
+				</div>
+	<?php endif;?>
 	<form method="POST" action="">
+	    	<fieldset>
+	    	<legend>Add Park to Table</legend>	
 	    	<p>
 	        	<label for="pname">Park Name</label>
 	        	<input id="pname" name="pname" placeholder="Park Name Here" type="text">
 	    	</p>
 	    	<p>
 	        	<label for="plocation">Location</label>
-	        	<input id="plocation" name="plocation" placeholder="Location Here" type="text" required> 
+	        	<input id="plocation" name="plocation" placeholder="Location Here" type="text" > 
 	    	</p>
 	    	<p>
 	        	<label for="date">Date Established</label>
-	        	<input id="date" name="date" placeholder="YYYY-MM-DD" type="text" required>
+	        	<input id="date" name="date" placeholder="YYYY-MM-DD" type="text" >
 	    	</p>
 	    	<p>
 	        	<label for="acre">Acreage</label>
-	        	<input id="acre" name="acre" placeholder="Acreage Here" type="number" required>
+	        	<input id="acre" name="acre" placeholder="Acreage Here" type="number" >
 	    	</p>
 	    	<p>
 	        	<label for="descript">Description</label>
@@ -82,6 +128,7 @@ $result = $mysqli->query("SELECT * FROM national_parks ORDER BY $sortCol $sortOr
 	    	<p>
 	        	<button type="submit">Submit Park</button>
 	    	</p>
+	    	</fieldset>
 		</form>
 
 </body>
