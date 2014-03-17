@@ -106,7 +106,7 @@ if (count($_FILES) > 0 && $_FILES['upload_file']['error'] == 0) {
 		<form method="POST" action="">
 	    	<p>
 	        	<label for="contactname">Contact name</label>
-	        	<input id="contactname" name="contactname" placeholder="Enter Name" autofocus= "autofocus" type="text" required>
+	        	<input id="contactname" name="contactname" placeholder="Enter Name" autofocus= "autofocus" type="text" >
 	    	</p>
 	    	<p>
 	        	<label for="address">Home Address</label>
