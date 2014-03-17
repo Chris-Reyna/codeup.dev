@@ -8,6 +8,8 @@ $sortOrder = $_GET['sort_order'];
 
 //query to get the parks
 $result = $mysqli->query("SELECT * FROM national_parks ORDER BY $sortCol $sortOrder");
+
+//if (!empty($_POST))
 	
 ?>
 
@@ -55,6 +57,32 @@ $result = $mysqli->query("SELECT * FROM national_parks ORDER BY $sortCol $sortOr
 	}
 	?>
 	</table>
+	<form method="POST" action="">
+	    	<p>
+	        	<label for="pname">Park Name</label>
+	        	<input id="pname" name="pname" placeholder="Park Name Here" type="text">
+	    	</p>
+	    	<p>
+	        	<label for="plocation">Location</label>
+	        	<input id="plocation" name="plocation" placeholder="Location Here" type="text" required> 
+	    	</p>
+	    	<p>
+	        	<label for="date">Date Established</label>
+	        	<input id="date" name="date" placeholder="YYYY-MM-DD" type="text" required>
+	    	</p>
+	    	<p>
+	        	<label for="acre">Acreage</label>
+	        	<input id="acre" name="acre" placeholder="Acreage Here" type="number" required>
+	    	</p>
+	    	<p>
+	        	<label for="descript">Description</label>
+	        	<textarea id="descript" name="descript" rows="10" cols="50" required></textarea>
+	    	</p>
+
+	    	<p>
+	        	<button type="submit">Submit Park</button>
+	    	</p>
+		</form>
 
 </body>
 </html>
