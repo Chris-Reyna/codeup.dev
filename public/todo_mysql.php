@@ -8,18 +8,24 @@ if ($mysqli->connect_errno) {
     echo 'Failed to connect to MySQL: (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error;
 }
 
+$limit = 10;
+$successMessage = NULL;
+$errorMessage = NULL;
+if (!empty($_POST)) {
+    if(!empty($_POST['TASK'])){
+        // // Create the prepared statement
+        $stmt = $mysqli->prepare("INSERT INTO Lists (item) VALUES (?)");
+        
+        // bind parameters
+        $stmt->bind_param("s", $_POST['TASK']);
+        
+        // execute query, return result
+        $stmt->execute();
+        $successMessage = "Task Added Successfully";
+    }else {
+        $errorMessage = "Please Enter a Task to Add";
+    }
 
-
-
-if(!empty($_POST['TASK'])){
-// // Create the prepared statement
-$stmt = $mysqli->prepare("INSERT INTO Lists (item) VALUES (?)");
-
-// bind parameters
-$stmt->bind_param("s", $_POST['TASK']);
-
-// execute query, return result
-$stmt->execute();
 }
 
 //remove
@@ -69,7 +75,43 @@ if (count($_FILES) > 0 && $_FILES['upload_file']['error'] == 0) {
         $stmt->execute();
                 # code...
     }
- }       
+ }      
+
+
+//$result->close();
+
+if (!empty($_GET['page'])){
+    $page = $_GET['page'];
+}else {
+    $page = 1;
+}
+
+if ($page > 1){
+    $offset = ($page * $limit) - $limit;
+}else {
+    $offset = 0;
+}
+
+$stmt = $mysqli->query("SELECT * FROM Lists");
+
+$num_rows = $stmt->num_rows;
+
+$num_pages = ceil($num_rows / $limit);
+
+$stmt = $mysqli->prepare("SELECT * FROM Lists LIMIT ? OFFSET ?");
+
+$stmt->bind_param("ii", $limit, $offset);
+
+$stmt->execute();
+
+$stmt->bind_result($id, $item);
+
+$rows = array();
+
+while ($stmt->fetch()){
+    $rows[] = array( 'id' => $id, 'item' => $item );
+}
+
 
 
 ?>
