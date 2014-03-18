@@ -72,7 +72,7 @@ if (count($_FILES) > 0 && $_FILES['upload_file']['error'] == 0) {
                 # code...
     }
  }      
-
+//Pagination
 if (!empty($_GET['page'])){
     $page = $_GET['page'];
 }else {
@@ -84,13 +84,13 @@ if ($page > 1){
 }else {
     $offset = 0;
 }
-
+//Select everthing from Database Lists
 $stmt = $mysqli->query("SELECT * FROM Lists");
 
 $num_rows = $stmt->num_rows;
-
+//setting a ceiling of rows per limit on page
 $num_pages = ceil($num_rows / $limit);
-
+//select all from lists with limits
 $stmt = $mysqli->prepare("SELECT * FROM Lists LIMIT ? OFFSET ?");
 
 $stmt->bind_param("ii", $limit, $offset);
