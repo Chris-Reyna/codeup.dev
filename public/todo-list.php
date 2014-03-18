@@ -26,7 +26,7 @@ require_once('filestore.php');
         <? if (!empty($errorMessage)): ?>
             <div class="alert alert-danger"><?= $errorMessage; ?></div>
         <? endif; ?>
-        
+
         <div class=container>
 		  <h1 id="main" class="header">TODO List</h1>
 		  <h2 class="header">LIST of Tasks</h2>
@@ -66,11 +66,11 @@ require_once('filestore.php');
         <div>
             <?if($page > 1): ?>
                 <? $page_no = $page - 1; ?>
-                <a href = "?page=<?=$page_no?>">Previous</a>
+                <a href = "?page=<?=$page_no?>">&lt;Previous</a>
             <?endif;?>
             <?if($page < $num_pages): ?>
                <? $page_no = $page +1; ?>
-                <a href = "?page=<?=$page_no?>">Next</a>
+                <a href = "?page=<?=$page_no?>">Next&gt;</a>
             <?endif;?>
         </div>
 	</body>
