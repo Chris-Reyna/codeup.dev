@@ -35,8 +35,7 @@ if (isset($_GET['remove'])) {
     $test = $_GET['remove'];
 
     if(!$stmt){
-        throw new Exception("Error Processing Request", 1);
-        
+        throw new Exception("Error Processing Request", 1);   
     }
 
     // bind parameters
@@ -47,7 +46,6 @@ if (isset($_GET['remove'])) {
 
      header("Location: todo-list.php");
     exit;
-
 }
 
 //Verify there were uploaded files and no errors
@@ -67,18 +65,13 @@ if (count($_FILES) > 0 && $_FILES['upload_file']['error'] == 0) {
     foreach ($newitems as $key => $value) {
         // // Create the prepared statement
         $stmt = $mysqli->prepare("INSERT INTO Lists (item) VALUES (?)");
-
         // bind parameters
         $stmt->bind_param("s", $value);
-
         // execute query, return result
         $stmt->execute();
                 # code...
     }
  }      
-
-
-//$result->close();
 
 if (!empty($_GET['page'])){
     $page = $_GET['page'];
@@ -111,7 +104,5 @@ $rows = array();
 while ($stmt->fetch()){
     $rows[] = array( 'id' => $id, 'item' => $item );
 }
-
-
 
 ?>
