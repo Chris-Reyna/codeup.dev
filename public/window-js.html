@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delayed Autosave</title>
+</head>
+<body>
+
+    <h2>Autosaving Text Input</h2>
+    <textarea rows="10" cols="60" id="important"></textarea>
+
+    <script>
+
+        var timeoutID = null;
+
+        function save() {
+            alert('Saved!');
+        }
+
+        function autosave() {
+
+            // Save() function is called 5 seconds after
+            // the last key up event. If a new key up event occurs,
+            // existing timer is cancelled and a new one is set
+            clearTimeout(timeoutID);
+            timeoutID = setTimeout(save, 5000);
+        }
+
+
+        // Autosave function to be called whenever
+        // a key up event occurs in the textarea
+        // var textarea = document.getElementById('important');
+        // textarea.addEventListener('keyup', autosave, false);
+        $('important').keyup(autosave());
+    </script>
+
+</body>
+</html>
