@@ -1,6 +1,14 @@
 <html>
 <head>
 	<title></title>
+	<style type="text/css">
+		.header{
+			cursor: pointer;
+		}
+		.stmt{
+			cursor: pointer;
+		}
+	</style>
 </head>
 <body>
 	<div id="divider" class="container">
@@ -21,9 +29,21 @@
 	</div>
 	<script src="/js/jquery.js"></script>
 	<script type="text/javascript">
-		$('li').css('font-size','20px');
-		$('h1, p, li').css('background-color','#FF0');
-    	alert($('h1').html());
+
+		$('h1').click(function() {
+            $(this).css('background-color','#FF0');
+        });
+        $('p').dblclick(function() {
+            $(this).css('font-size','18px');
+        }); 
+        $('li').hover(
+            function() {
+                $(this).css('color', '#F00');
+            },
+            function() {
+                $(this).css('color', '#000');
+            }
+        );    
 	</script>
 </body>
 </html>
