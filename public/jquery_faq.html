@@ -1,0 +1,50 @@
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.invisible{
+			display: none;
+		}
+		dt{
+			cursor: pointer;
+		}
+	</style>
+	<script src="/js/jquery.js"></script>
+</head>
+<body>
+	<h1>Park FAQs</h1>
+	
+	<dl>
+		<dt>What is the largest national park?</dt>
+			<dd>Big Bend National Park</dd>
+		<dt>What is Big Bend's area?</dt>
+			<dd>801163.19</dd>
+		<dt>Where is Big Bend National Park?</dt>
+			<dd>Texas</dd>
+		<dt>What is the oldest National Park?</dt>
+			<dd>Acadia</dd>
+		<dt>Where is Acadia?</dt>
+			<dd>Maine</dd>
+		<dt>When was it established?</dt>
+			<dd>1919-02-26</dd>
+		<dt>What is the youngest National Park?</dt>
+			<dd>Black Canyon of the Gunison</dd>
+		<dt>When was it established?</dt>
+			<dd>1999-10-21</dd>	
+		<dt>What is the smallest National Park?</dt>
+			<dd>American Somoa</dd>
+		<dt>Where is it?</dt>
+			<dd>American Samoa</dd>
+	</dl>
+<script type="text/javascript">
+
+	$('dd').addClass('invisible');
+
+	$('dt').on('click',function() {
+		$(this).next().toggleClass('invisible');
+	});
+
+</script>
+
+</body>
+</html>
