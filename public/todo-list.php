@@ -1,8 +1,6 @@
 <?php
 require_once('todo_mysql.php');
 require_once('filestore.php');
-
-
 ?>
 <!DOCTYPE>
 <html>
@@ -63,14 +61,14 @@ require_once('filestore.php');
                     </p>
                 </form>
         </div>        
-        <div>
+        <div class="clearfix">
             <?if($page > 1): ?>
                 <? $page_no = $page - 1; ?>
-                <a href = "?page=<?=$page_no?>">&lt;Previous</a>
+                <a href = "?page=<?=$page_no?>" class="pull-left btn btn-default btn-sm">&lt;Previous</a>
             <?endif;?>
             <?if($page < $num_pages): ?>
                <? $page_no = $page +1; ?>
-                <a href = "?page=<?=$page_no?>">Next&gt;</a>
+                <a href = "?page=<?=$page_no?>" class="pull-right btn btn-default btn-sm">Next&gt;</a>
             <?endif;?>
         </div>
 	</body>
