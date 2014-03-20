@@ -10,6 +10,20 @@
 			background-color: #CCC;
 			font-size: 24;
 		}
+		h1{
+			font-size: 50;
+			text-align: center;
+			color: #009933;
+		}
+		body{
+			background-color: #FFF;
+		}
+		dd{
+			color: #FF0000;
+		}
+		ul{
+			cursor: pointer;
+		}
 	</style>
 	<script src="/js/jquery.js"></script>
 </head>
@@ -38,14 +52,47 @@
 		<dt>Where is it?</dt>
 			<dd>American Samoa</dd>
 	</dl>
+	<h3>Big Bend National Park</h3>
+		<ul>
+			<li>Established in 1944</li>
+			<li>It's Area in acres is 801163.19</li>
+			<li>It's in Texas</li>
+			<li>It's near the Mexican Border</li>
+		</ul>
+	<h3>Acadia</h3>
+		<ul>
+			<li>Area in acreage is 47389.67</li>
+			<li>Established in 1919</li>
+			<li>Located in Maine</li>
+			<li>On the Atlantic COast</li>
+		</ul>
+	<h3>Arches</h3>
+		<ul>
+			<li>Located in Utah</li>
+			<li>It's a desert</li>
+			<li>Has large rock formation in he shape of arches</li>
+			<li>Established in 1971</li>
+		</ul>
 <script type="text/javascript">
 
-	$('dd').addClass('invisible');
-
-	$('dt').on('click',function() {
-		$(this).next().toggleClass('invisible');
+	
+	$('dd').hide();
+	$('dt').on('click',function(){
+		$(this).next().fadeIn(1000);
 	});
 
+	$('ul').each(function(){
+		$(this).children().first().css('font-weight','bold');
+	});
+
+	$('li').click(function(){
+		$(this).parent().hide();
+	});
+	$('h3').on('click',function(){
+		$(this).fadeOut(1000);
+		$(this).next().fadeOut(1000);
+	});
+	
 </script>
 
 </body>
