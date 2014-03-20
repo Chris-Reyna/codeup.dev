@@ -3,11 +3,93 @@
 	<title></title>
 	<style type="text/css">
 	
+		/* body css death star image*/
+		body{
+			background-image: url("/img/deathstar.jpg");
+			text-align: center;
+		}
+		#gamename{
+			color: #FF0;
+			font-size: 30;
+			text-align: center;
+		}
+		/* img css for lightsaber cursor  */
+		img, a:hover {
+			cursor: url(http://cur.cursors-4u.net/others/oth-1/oth24.cur), progress 	!important;
+			height: 200px;
+			width: 200px;
+			display: none;
+
+		}
+		.hole{
+			border:2px solid #FF0;
+			float: left;
+			height: 200px;
+			width: 200px;
+		}
+		#board{
+			margin: 10px auto;
+			width: 800px;
+			
+
+
+		}
 	</style>
+	<!--beginning of cursor code -->
+	<a href="http://www.cursors-4u.com/cursor/2005/07/07/oth24.html" target="_blank" title="Star Wars Lightsaber">
+		<img src="http://cur.cursors-4u.net/cursor.png" border="0" alt="Star Wars Lightsaber" style="position:absolute; top: 0px; right: 0px;" />
+	</a>
+	<!--end of cursor code -->
+	<script src="/js/jquery.js"></script>
+
 </head>
 <body>
-	<script type="text/javascript">
+	<h1 id="gamename">WHACK-A-VADER</h1>
+	<!-- grid system col 8x4 -->
+	<div class='container'>  
+		<div id='board'>
+			<div class='hole'>
+				<img src="img/vaderwhack1.jpg">
+			</div>
+			<div class='hole'>
+				<img src="img/vaderwhack1.jpg">
+			</div>
+			<div class='hole'>
+				<img src="img/vaderwhack1.jpg">
+			</div>
+			<div class='hole'>
+				<img src="img/vaderwhack1.jpg">
+			</div>
+			<div class='hole'>
+				<img src="img/vaderwhack1.jpg">
+			</div>
+			<div class='hole'>
+				<img src="img/vaderwhack1.jpg">
+			</div>
+			
+			<div class='hole'>
+				<img src="img/vaderwhack1.jpg">
+			</div>
+			<div class='hole'>
+				<img src="img/vaderwhack1.jpg">
+			</div>
+			<div class='hole'>
+				<img src="img/vaderwhack1.jpg">
+			</div>
+		</div>
+	</div>
 
+	
+
+	<script type="text/javascript">
+		/*jquery for image effect*/
+		var holes = $('.hole');
+		var rand = Math.floor(Math.random() * holes.length);
+		$(holes[rand]).children().fadeIn();
 	</script>
+
+
+
+
 </body>
 </html>
