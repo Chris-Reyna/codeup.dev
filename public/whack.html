@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title></title>
+	<title>Whack-a-Vader</title>
 	<style type="text/css">
 	
 		/* body css death star image*/
@@ -10,7 +10,7 @@
 		}
 		#gamename{
 			color: #FF0;
-			font-size: 30;
+			font-size: 27;
 			text-align: center;
 		}
 		/* img css for lightsaber cursor  */
@@ -28,11 +28,14 @@
 			width: 200px;
 		}
 		#board{
+
 			margin: 10px auto;
 			width: 800px;
 			
-
-
+		}
+		#counter{
+			color: #FF0;
+			float: left;
 		}
 	</style>
 	<!--beginning of cursor code -->
@@ -45,7 +48,15 @@
 </head>
 <body>
 	<h1 id="gamename">WHACK-A-VADER</h1>
-	<!-- grid system col 8x4 -->
+	<div id='stats'>
+		<!--adding button to start-->
+		<button id="start" type="button">Button</button>
+		<div id="counter">0</div>
+
+
+	</div>
+
+
 	<div class='container'>  
 		<div id='board'>
 			<div class='hole'>
@@ -79,13 +90,24 @@
 		</div>
 	</div>
 
-	
-
 	<script type="text/javascript">
-		/*jquery for image effect*/
+		//adding button to start 
+		var count = 0;
+
+		$(".hole").children().click(function() {
+    		count++;
+    		$("#counter").html("STRIKES: "+count);
+		});
+
+
 		var holes = $('.hole');
-		var rand = Math.floor(Math.random() * holes.length);
-		$(holes[rand]).children().fadeIn();
+
+		/*jquery for image effect*/
+		setInterval(function(){
+			holes.children().fadeOut();
+			var rand = Math.floor(Math.random() * holes.length);
+			$(holes[rand]).children().fadeIn();
+		}, 1000);
 	</script>
 
 
