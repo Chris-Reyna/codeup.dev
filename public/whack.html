@@ -11,11 +11,10 @@
 		#gamename{
 			color: #FF0;
 			font-size: 27;
-			text-align: center;
 		}
 		/* img css for lightsaber cursor  */
-		img, a:hover {
-			cursor: url(http://cur.cursors-4u.net/others/oth-1/oth24.cur), progress 	!important;
+		img {
+			
 			height: 200px;
 			width: 200px;
 			display: none;
@@ -27,16 +26,20 @@
 			height: 200px;
 			width: 200px;
 		}
-		#board{
-
-			margin: 10px auto;
+		#board, a:hover{
+			cursor: url(http://cur.cursors-4u.net/others/oth-1/oth24.cur), progress 	!important;
+			margin: 15px 25%;
 			width: 800px;
 			
 		}
 		#counter{
 			color: #FF0;
+		}
+		#stats{
 			float: left;
 		}
+		#start{
+			background-color: #FF0;	}
 	</style>
 	<!--beginning of cursor code -->
 	<a href="http://www.cursors-4u.com/cursor/2005/07/07/oth24.html" target="_blank" title="Star Wars Lightsaber">
@@ -44,14 +47,15 @@
 	</a>
 	<!--end of cursor code -->
 	<script src="/js/jquery.js"></script>
-
+	
 </head>
 <body>
 	<h1 id="gamename">WHACK-A-VADER</h1>
 	<div id='stats'>
+		<span id="dummy"></span>
 		<!--adding button to start-->
-		<button id="start" type="button">Button</button>
-		<div id="counter">0</div>
+		<input id="start" type="button" value="BATTLE"/>
+		<div id="counter">STRIKES:0</div>
 
 
 	</div>
@@ -91,27 +95,58 @@
 	</div>
 
 	<script type="text/javascript">
-		//adding button to start 
+		
 		var count = 0;
-
-		$(".hole").children().click(function() {
-    		count++;
-    		$("#counter").html("STRIKES: "+count);
-		});
-
-
+		var gameInterval;
 		var holes = $('.hole');
-
-		/*jquery for image effect*/
-		setInterval(function(){
+		var action = function(){
 			holes.children().fadeOut();
 			var rand = Math.floor(Math.random() * holes.length);
 			$(holes[rand]).children().fadeIn();
-		}, 1000);
+		};
+		$(".hole").children().click(function() {
+    		count++;
+    		$("#counter").html("STRIKES: "+count);
+    		if (count == 10){
+				clearInterval(gameInterval);
+			}
+		});
+		//adding button to start
+		$('#start').click(function(){
+			//jquery for image effect
+			gameInterval = setInterval(action, 1000);
+		});
+
+		// sound stuff here
+		var audioElement = document.createElement('audio');
+        audioElement.setAttribute('src', 'sound/obiwan_theforce.wav');
+        //audioElement.setAttribute('autoplay', 'autoplay');
+        //audioElement.load()
+
+        $.get();
+
+        audioElement.addEventListener("load", function() {
+            audioElement.play();
+        }, true);
+
+        $('#start').click(function() {
+            audioElement.play();
+        });
+
+        var audioElement2 = document.createElement('audio');
+        audioElement2.setAttribute('src', 'sound/lsclash.wav');
+        //audioElement.load()
+
+        $.get();
+
+        audioElement2.addEventListener("load", function() {
+            audioElement2.play();
+        }, true);
+
+        $('.hole').children().click(function() {
+            audioElement2.play();
+        });
+
 	</script>
-
-
-
-
 </body>
 </html>
